@@ -9,7 +9,7 @@ ser = serial.Serial("/dev/ttyS0",115200)
 ser.flushInput()
 
 phone_number = '**********' #phone no.
-text_message = 'www.waveshare.com'
+text_message = 'Unusual movement Detected'
 power_key = 6
 rec_buff = ''
 
@@ -87,21 +87,21 @@ def callback(channel):
         if GPIO.input(channel):
                 print "Movement Detected!"
                 try:
-					power_on(power_key)
-					print('Sending Short Message Test:')
-					SendShortMessage(phone_number,text_message)
-					print('Receive Short Message Test:\n')
-					print('Please send message to phone ' + phone_number)
-					ReceiveShortMessage()
-					power_down(power_key)
-				except :
-					if ser != None:
-						ser.close()
-					GPIO.cleanup()
+			power_on(power_key)
+			print('Sending Short Message Test:')
+			SendShortMessage(phone_number,text_message)
+			print('Receive Short Message Test:\n')
+			print('Please send message to phone ' + phone_number)
+#			ReceiveShortMessage()
+#			power_down(power_key)
+		except :
+			if ser != None:
+				ser.close()
+			GPIO.cleanup()
 
 
         else:
-                print "Movement hone de tabhi msg bhejnge"
+                print "Ordinary movement"
 
 GPIO.add_event_detect(channel, GPIO.BOTH, bouncetime=300)  
 GPIO.add_event_callback(channel, callback)  
